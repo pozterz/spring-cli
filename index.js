@@ -61,23 +61,23 @@ const generateFiles = async (name, appName) => {
 
   const filesToGenerate = [
     {
-      template: "controller.js",
+      template: "controller.java",
       output: path.join(baseDir, "controller", `${name}Controller.java`),
     },
     {
-      template: "dto.js",
+      template: "dto.java",
       output: path.join(baseDir, "dto", `${name}DTO.java`),
     },
     {
-      template: "repository.js",
+      template: "repository.java",
       output: path.join(baseDir, "repository", `${name}Repository.java`),
     },
     {
-      template: "service.js",
+      template: "service.java",
       output: path.join(baseDir, "service", `${name}Service.java`),
     },
     {
-      template: "serviceImpl.js",
+      template: "serviceImpl.java",
       output: path.join(baseDir, "service", "impl", `${name}ServiceImpl.java`),
     },
   ];
