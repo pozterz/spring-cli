@@ -1,7 +1,7 @@
-class {{name}}Service {
-    constructor() {
-        // Define service methods here
-    }
-}
+package {{appName}}.service;
 
-module.exports = {{name}}Service;
+import to.co.netbay.rdspserverupload.dto.StandardResponse;
+
+public interface {{name}}Service {
+
+}

@@ -1,7 +1,9 @@
+package {{appName}}.repository;
+
+import org.springframework.stereotype.Component;
+
+@Component
 class {{name}}Repository {
-    constructor() {
-        // Define repository methods here
-    }
+
 }
 
-module.exports = {{name}}Repository;

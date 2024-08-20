@@ -1,12 +1,16 @@
-const {{name}}Service = require('./{{name}}Service');
+package {{appName}}.service.impl;
 
-class {{name}}ServiceImpl extends {{name}}Service {
-    constructor({{nameCamelCase}}Repository) {
-        super();
-        this.{{nameCamelCase}}Repository = {{nameCamelCase}}Repository;
-    }
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import {{appName}}.service.OpenApiService;
+
+@Service
+@Slf4j
+@AllArgsConstructor(onConstructor = @__({@Autowired}))
+public class {{name}}ServiceImpl implements {{name}}Service {
 
     // Implement service methods here
 }
 
-module.exports = {{name}}ServiceImpl;

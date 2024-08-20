@@ -16,20 +16,19 @@ const toCamelCase = (string) =>
   string.charAt(0).toLowerCase() + string.slice(1);
 
 // Function to replace placeholders in templates
-const replacePlaceholders = (content, name) => {
+const replacePlaceholders = (content, name, appName) => {
   const nameCamelCase = toCamelCase(name);
   return content
     .replace(/{{name}}/g, name)
-    .replace(/{{nameCamelCase}}/g, nameCamelCase);
+    .replace(/{{nameCamelCase}}/g, nameCamelCase)
+    .replace(/{{appName}}/g, appName);
 };
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const getBaseDir = (appName) => {
-  const normalizedAppName = appName
-    .replace(/[/\\]/g, path.sep) // Convert slashes to platform-specific separator
-    .replace(/\./g, path.sep); // Convert dots to directory separators
+const getBaseDir = (normalizedAppName) => {
+  // Convert dots to directory separators
 
   const currentPath = process.cwd();
 
@@ -55,7 +54,10 @@ const getBaseDir = (appName) => {
 
 // Function to generate files based on the provided name
 const generateFiles = async (name, appName) => {
-  const baseDir = getBaseDir(appName);
+  const normalizedAppName = appName
+    .replace(/[/\\]/g, path.sep) // Convert slashes to platform-specific separator
+    .replace(/\./g, path.sep);
+  const baseDir = getBaseDir(normalizedAppName);
 
   const filesToGenerate = [
     {
@@ -112,7 +114,11 @@ const generateFiles = async (name, appName) => {
     let content = fs.readFileSync(templatePath, "utf-8");
 
     // Replace placeholders with actual values
-    content = replacePlaceholders(content, capitalizeFirstLetter(name));
+    content = replacePlaceholders(
+      content,
+      capitalizeFirstLetter(name),
+      normalizedAppName.replace(/[/\\]/g, ".")
+    );
 
     // Write the generated content to the output file
     fs.writeFileSync(output, content);
